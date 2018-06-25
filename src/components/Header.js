@@ -10,7 +10,7 @@ export default class Header extends Component {
     return (
       <header>
         <Link to={'/'}>
-          <h1>
+          <h1 className="highlightReel">
             <img src={logo} alt="Highlight Reel" />
           </h1>
         </Link>

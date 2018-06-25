@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+  .movieDbLogo {
+    position: absolute;
+    top: 15px;
+    right: 8px;
+  }
+}
+
+@media (max-width: 992px) {
+  .movieDbLogo {
+    position: absolute;
+    top: 15px;
+    right: 8px;
+  }
+}

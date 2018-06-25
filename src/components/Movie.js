@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Form from './Form';
 import Cast from './Cast';
-import moment from 'moment';
+import Footer from './Footer';
 import '../css/Movie.css';
+import StarRatingComponent from 'react-star-rating-component';
 
 export default class Movie extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default class Movie extends Component {
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header />
         <div className="container">
           <div className="moviePage">
@@ -70,34 +71,30 @@ export default class Movie extends Component {
               />
             </div>
             <section className="movieDetails">
-              <h2 className="sectionTitle">{this.state.movie.title}</h2>
-              {/* <ul className="detailsList">
-                <li>
-                  <span className="bold">Release date: </span>
-                  {this.state.movie.release_date}
-                </li>
-                <li>
-                  <span className="bold">Rating: </span>
-                  {this.state.movie.vote_average}
-                </li>
-                <li>
-                  <span className="bold">Vote count: </span>
-                  {this.state.movie.vote_count}
-                </li>
-                <li> */}
+              <h2 className="sectionTitle">
+                {this.state.movie.title} ({parseInt(
+                  this.state.movie.release_date
+                )})
+              </h2>
               <table class="table-fill">
                 <tbody class="table-hover">
                   <tr>
-                    <td class="text-left">Release date:</td>
-                    <td class="text-left">{this.state.movie.release_date}</td>
-                  </tr>
-                  <tr>
                     <td class="text-left">Rating:</td>
-                    <td class="text-left">{this.state.movie.vote_average}</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">Vote count:</td>
-                    <td class="text-left">{this.state.movie.vote_count}</td>
+                    <td class="text-left">
+                      <StarRatingComponent
+                        disabled={false}
+                        emptyStar={'ios-star-outline'}
+                        fullStar={'ios-star'}
+                        halfStar={'ios-star-half'}
+                        iconSet={'Ionicons'}
+                        maxStars={5}
+                        rating={this.state.starCount}
+                        selectedStar={rating => this.onStarRatingPress(rating)}
+                        fullStarColor={'red'}
+                        value={parseInt(this.state.movie.vote_average) / 2}
+                      />{' '}
+                      <span>({this.state.movie.vote_count} votes)</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -125,7 +122,8 @@ export default class Movie extends Component {
           </div>
           <Cast cast={this.state.movie.credits.cast} />
         </div>
-      </div>
+        <Footer />
+      </React.Fragment>
     );
   }
 }

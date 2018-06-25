@@ -17,7 +17,7 @@ export default class FormResults extends React.Component {
     const link = 'https://image.tmdb.org/t/p/w300';
     return (
       <ul id="results" onClick={this.handleClick}>
-        {this.props.results.map((element, index) => {
+        {this.props.results.slice(0, 5).map((element, index) => {
           return (
             <li key={index} onClick={this.handleClick}>
               <Link to={`/movie/${this.props.results[index].id}`}>
