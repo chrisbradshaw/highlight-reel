@@ -14,8 +14,9 @@ Responsive React.js app that renders and searches movies from the MovieDB API
 
 ## Highlights
 
-- React.js fetch get Data from TMDb
-- Search movies in Navbar
+- React.js fetch to get data from TMDb
+- Homepage displays New Releases based on current day and date
+- Search movies in Navbar, including autocomplete limited to 5 responses
 - Format and render Movie, Description, Release Date, and User Ratings
 
 ## Development setup
@@ -35,7 +36,7 @@ This project is licensed under the MIT License.
 
 ## Contributing
 
-1.  Fork it (<https://github.com/chrisbradshaw/hodl-svg-line-chart>)
+1.  Fork it (<https://github.com/chrisbradshaw/highlight-reel>)
 2.  Create your feature branch (`git checkout -b feature/fooBar`)
 3.  Commit your changes (`git commit -am 'Add some fooBar'`)
 4.  Push to the branch (`git push origin feature/fooBar`)
