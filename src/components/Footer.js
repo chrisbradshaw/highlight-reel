@@ -7,7 +7,9 @@ export default class Footer extends Component {
       <div className="footer">
         Made by Chris Bradshaw, {new Date().getFullYear()}{' '}
         <span>
-          <a href="https://github.com/chrisbradshaw">Github Repo</a>
+          <a href="https://github.com/chrisbradshaw/highlight-reel">
+            Github Repo
+          </a>
         </span>
       </div>
     );
