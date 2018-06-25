@@ -8,10 +8,11 @@ import NewMovies from './components/NewMovies';
 export default class Home extends React.Component {
   render() {
     return (
-      <div className="container">
+      <div>
         <Header />
-        <Form />
-        <NewMovies />
+        <div className="container">
+          <NewMovies />
+        </div>
       </div>
     );
   }

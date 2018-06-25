@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Form from './Form';
 import Cast from './Cast';
+import moment from 'moment';
 import '../css/Movie.css';
 
 export default class Movie extends Component {
@@ -32,6 +33,7 @@ export default class Movie extends Component {
         }
         response.json().then(data => {
           const movie = data;
+
           this.setState({ movie });
         });
       })
@@ -50,53 +52,79 @@ export default class Movie extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div>
         <Header />
-        <Form id="form" />
-        <div className="moviePage">
-          <div className="poster">
-            <img
-              src={
-                this.state.movie.poster_path === null
-                  ? 'http://via.placeholder.com/300x450'
-                  : `https://image.tmdb.org/t/p/w300${
-                      this.state.movie.poster_path
-                    }`
-              }
-              alt={`${this.state.movie.title} poster`}
-              className="posterImg"
-            />
+        <div className="container">
+          <div className="moviePage">
+            <div className="poster">
+              <img
+                src={
+                  this.state.movie.poster_path === null
+                    ? 'http://via.placeholder.com/300x450'
+                    : `https://image.tmdb.org/t/p/w300${
+                        this.state.movie.poster_path
+                      }`
+                }
+                alt={`${this.state.movie.title} poster`}
+                className="posterImg"
+              />
+            </div>
+            <section className="movieDetails">
+              <h2 className="sectionTitle">{this.state.movie.title}</h2>
+              {/* <ul className="detailsList">
+                <li>
+                  <span className="bold">Release date: </span>
+                  {this.state.movie.release_date}
+                </li>
+                <li>
+                  <span className="bold">Rating: </span>
+                  {this.state.movie.vote_average}
+                </li>
+                <li>
+                  <span className="bold">Vote count: </span>
+                  {this.state.movie.vote_count}
+                </li>
+                <li> */}
+              <table class="table-fill">
+                <tbody class="table-hover">
+                  <tr>
+                    <td class="text-left">Release date:</td>
+                    <td class="text-left">{this.state.movie.release_date}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">Rating:</td>
+                    <td class="text-left">{this.state.movie.vote_average}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">Vote count:</td>
+                    <td class="text-left">{this.state.movie.vote_count}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <span className="bold">Genres:</span>
+              {this.state.movie.genres.map((e, i) => {
+                if (i < this.state.movie.genres.length - 1) {
+                  return (
+                    <span className="label orange-red">
+                      {this.state.movie.genres[i].name}
+                    </span>
+                  );
+                } else {
+                  return (
+                    <span className="label orange-red">
+                      {this.state.movie.genres[i].name}
+                    </span>
+                  );
+                }
+              })}
+              {/* </li>
+              </ul> */}
+              <p className="movieDescription">{this.state.movie.overview}</p>
+            </section>
           </div>
-          <section className="movieDetails">
-            <h2 className="sectionTitle">{this.state.movie.title}</h2>
-            <ul className="detailsList">
-              <li>
-                <span className="bold">Release date:</span>
-                {this.state.movie.release_date}
-              </li>
-              <li>
-                <span className="bold">Rating:</span>
-                {this.state.movie.vote_average}
-              </li>
-              <li>
-                <span className="bold">Vote count:</span>
-                {this.state.movie.vote_count}
-              </li>
-              <li>
-                <span className="bold">Genres:</span>
-                {this.state.movie.genres.map((e, i) => {
-                  if (i < this.state.movie.genres.length - 1) {
-                    return this.state.movie.genres[i].name + ', ';
-                  } else {
-                    return this.state.movie.genres[i].name;
-                  }
-                })}
-              </li>
-            </ul>
-            <p>{this.state.movie.overview}</p>
-          </section>
+          <Cast cast={this.state.movie.credits.cast} />
         </div>
-        <Cast cast={this.state.movie.credits.cast} />
       </div>
     );
   }

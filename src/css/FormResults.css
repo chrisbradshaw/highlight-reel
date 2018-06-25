@@ -10,6 +10,7 @@
 .formResults li {
   background-color: #263238;
   transition: all 0.35s ease-out;
+  border-bottom: 1px dotted #fff;
 }
 
 .formResults li:hover {

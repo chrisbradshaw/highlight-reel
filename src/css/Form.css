@@ -2,6 +2,7 @@ form {
   position: relative;
   padding-top: 25px;
   text-align: center;
+  width: 60%;
 }
 
 .searchBar {
@@ -9,14 +10,15 @@ form {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   padding: 20px 0 20px 40px;
-  border: 1px solid #bdbdbd;
+  border: 5px solid #bdbdbd;
   color: #000;
   outline: none;
   transition: all 0.35s ease-out;
+  border-radius: 25px;
 }
 
 .searchBar:focus {
-  border: 1px solid #1de9b6;
+  border: 5px solid #ff5722;
 }
 
 ::placeholder {
@@ -25,7 +27,8 @@ form {
 }
 
 .searchBar:focus::placeholder {
-  color: #1de9b6;
+  color: #ff5722;
+  text-decoration: bold;
 }
 
 .searchIcon {

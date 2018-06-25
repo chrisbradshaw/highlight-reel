@@ -11,6 +11,11 @@
   margin-bottom: 30px;
 }
 
+.new-releases {
+  margin-left: 40%;
+  text-decoration: underline;
+}
+
 @media (min-width: 576px) {
   .newMovies {
     justify-content: space-between;
@@ -47,13 +52,15 @@
   padding: 0 10px;
   width: 100%;
   height: 100%;
-  background-color: #263238;
-  color: #1de9b6;
+  background-color: #000;
+  color: white;
   opacity: 0;
   visibility: hidden;
 }
 
 .movieLink:hover .movieInfo {
-  opacity: 1;
+  opacity: 0.8;
   visibility: visible;
+  color: #ff5722;
+  border: 5px #ff5722 solid;
 }

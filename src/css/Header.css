@@ -2,8 +2,10 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 3px solid #eee;
   padding-bottom: 25px;
+  background: #2b2c2c;
+  padding: 0% 3%;
 }
 
 .navbar li {
@@ -25,7 +27,7 @@ header {
   header {
     flex-direction: row;
     justify-content: space-between;
-    padding: 0;
+    padding: 0% 3%;
   }
   .navbar li {
     margin: 0 0 0 20px;

@@ -4,6 +4,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Movie from './components/Movie';
 import './index.css';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Cormorant Garamond', 'serif', 'Proza Libre', 'sans-serif'],
+  },
+});
 
 class App extends React.Component {
   render() {

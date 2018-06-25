@@ -51,7 +51,6 @@ export default class NewMovies extends Component {
   render() {
     return (
       <section>
-        <h2>New Releases</h2>
         <div className="newMovies">
           {this.state.movies.map((movie, i) => {
             return (
@@ -72,8 +71,7 @@ export default class NewMovies extends Component {
                   className="imgResponsive"
                 />
                 <div className="movieInfo">
-                  <h3>{this.state.movies[i].title}</h3>
-                  <p>{this.state.movies[i].release_date}</p>
+                  <h2>{this.state.movies[i].title}</h2>
                 </div>
               </Link>
             );

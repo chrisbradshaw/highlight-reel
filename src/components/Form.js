@@ -52,9 +52,9 @@ export default class Form extends Component {
         <input
           onKeyUp={this.handleKeyUp}
           id="searchInput"
-          className="saerchBar"
+          className="searchBar"
           type="text"
-          placeholder="Enter movie"
+          placeholder="Search for your movie here"
           required
         />
         <FormResults results={this.state.results} />

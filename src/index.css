@@ -1,5 +1,83 @@
+/* Main rules */
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  padding-bottom: 30px;
+  background: #0ecde9; /* For older browsers that may not support gradients */
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    #0ecde9 0%,
+    #025e83 100%
+  );
+  background: radial-gradient(#0ecde9, #025e83);
+  color: #000;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  padding: 1em 2em;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.27);
+}
+
+@media (min-width: 1060px) {
+  .container {
+    width: 960px;
+    margin: 0 auto;
+  }
+}
+
+.imgResponsive {
+  width: 100%;
+  height: auto;
+}
+
+/* Typography */
+
+h1 {
+  font-weight: 900;
+  transition: all 0.35s ease-out;
+}
+
+h2 {
+  font-weight: 900;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.35s ease-out;
+}
+
+/* Nav */
+
+ul {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  list-style-type: none;
+}
+
+ul a {
+  font-weight: 600;
+}
+
+a h1:hover,
+ul a:hover {
+  color: #ff5722;
 }
