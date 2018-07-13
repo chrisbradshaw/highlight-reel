@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  min-height: 600px;
 }
 
 .newMovies a {
@@ -63,4 +64,8 @@
   visibility: visible;
   color: #ff5722;
   border: 5px #ff5722 solid;
+}
+
+.loading-spinner {
+  margin: 0 42%;
 }

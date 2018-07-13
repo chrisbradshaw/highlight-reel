@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 import '../css/NewMovies.css';
 
 export default class NewMovies extends Component {
@@ -7,11 +8,10 @@ export default class NewMovies extends Component {
     super(props);
     this.state = {
       movies: [],
+      loading: true,
     };
   }
-  componentDidMount() {
-    const key = process.env.REACT_APP_MOVIE_APP_ID;
-
+  getTodaysDate = () => {
     // Get a date range between today and one month ago to dynamically update the link for the request
     let todayDate = new Date();
     let today =
@@ -31,6 +31,13 @@ export default class NewMovies extends Component {
       '-' +
       todayDate.getDate();
 
+    return [today, oneMonthAgo];
+  };
+
+  componentDidMount() {
+    const key = process.env.REACT_APP_MOVIE_APP_ID;
+    var [today, oneMonthAgo] = this.getTodaysDate();
+
     fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${oneMonthAgo}&primary_release_date.lte=${today}`
     )
@@ -41,7 +48,7 @@ export default class NewMovies extends Component {
         }
         response.json().then(data => {
           const movies = data.results;
-          this.setState({ movies });
+          this.setState({ movies: movies, loading: false });
         });
       })
       .catch(err => {
@@ -51,6 +58,10 @@ export default class NewMovies extends Component {
   render() {
     return (
       <section>
+        <div className="loading-spinner">
+          <ClipLoader color={'#123abc'} loading={this.state.loading} />
+        </div>
+
         <div className="newMovies">
           {this.state.movies.map((movie, i) => {
             return (

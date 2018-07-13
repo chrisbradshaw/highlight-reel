@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
 import Header from './Header';
-import Form from './Form';
+import { ClipLoader } from 'react-spinners';
 import Cast from './Cast';
 import Footer from './Footer';
 import '../css/Movie.css';
@@ -10,6 +11,7 @@ export default class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       movie: {
         genres: [],
         credits: {
@@ -35,7 +37,7 @@ export default class Movie extends Component {
         response.json().then(data => {
           const movie = data;
 
-          this.setState({ movie });
+          this.setState({ loading: false, movie });
         });
       })
       .catch(err => {
@@ -53,77 +55,104 @@ export default class Movie extends Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <Header />
-        <div className="container">
-          <div className="moviePage">
-            <div className="poster">
-              <img
-                src={
-                  this.state.movie.poster_path === null
-                    ? 'http://via.placeholder.com/300x450'
-                    : `https://image.tmdb.org/t/p/w300${
-                        this.state.movie.poster_path
-                      }`
-                }
-                alt={`${this.state.movie.title} poster`}
-                className="posterImg"
-              />
-            </div>
-            <section className="movieDetails">
-              <h2 className="sectionTitle">
-                {this.state.movie.title} ({parseInt(
-                  this.state.movie.release_date
-                )})
-              </h2>
-              <table class="table-fill">
-                <tbody class="table-hover">
-                  <tr>
-                    <td class="text-left">Rating:</td>
-                    <td class="text-left">
-                      <StarRatingComponent
-                        disabled={false}
-                        emptyStar={'ios-star-outline'}
-                        fullStar={'ios-star'}
-                        halfStar={'ios-star-half'}
-                        iconSet={'Ionicons'}
-                        maxStars={5}
-                        rating={this.state.starCount}
-                        selectedStar={rating => this.onStarRatingPress(rating)}
-                        fullStarColor={'red'}
-                        value={parseInt(this.state.movie.vote_average) / 2}
-                      />{' '}
-                      <span>({this.state.movie.vote_count} votes)</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+        <div className="container movie-body">
+          {
+            <div>
+              {this.state.loading ? (
+                <div className="movie-loading-spinner">
+                  <ClipLoader color={'#123abc'} loading={this.state.loading} />
+                </div>
+              ) : (
+                <div>
+                  <div className="moviePage">
+                    <div className="poster">
+                      <img
+                        src={
+                          this.state.movie.poster_path === null
+                            ? 'http://via.placeholder.com/300x450'
+                            : `https://image.tmdb.org/t/p/w300${
+                                this.state.movie.poster_path
+                              }`
+                        }
+                        alt={`${this.state.movie.title} poster`}
+                        className="posterImg"
+                      />
+                    </div>
+                    <section className="movieDetails">
+                      <h2 className="sectionTitle">
+                        {this.state.movie.title} ({parseInt(
+                          this.state.movie.release_date
+                        )})
+                      </h2>
+                      <table className="table-fill">
+                        <tbody className="table-hover">
+                          <tr>
+                            <td className="text-left">Rating:</td>
+                            <td className="text-left">
+                              <StarRatingComponent
+                                name="Movie Rating"
+                                disabled={false}
+                                emptyStar={'ios-star-outline'}
+                                fullStar={'ios-star'}
+                                halfStar={'ios-star-half'}
+                                iconSet={'Ionicons'}
+                                maxStars={5}
+                                rating={this.state.starCount}
+                                selectedStar={rating =>
+                                  this.onStarRatingPress(rating)
+                                }
+                                fullStarColor={'red'}
+                                value={
+                                  parseInt(this.state.movie.vote_average) / 2
+                                }
+                              />{' '}
+                              <span>({this.state.movie.vote_count} votes)</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
 
-              <span className="bold">Genres:</span>
-              {this.state.movie.genres.map((e, i) => {
-                if (i < this.state.movie.genres.length - 1) {
-                  return (
-                    <span className="label orange-red">
-                      {this.state.movie.genres[i].name}
-                    </span>
-                  );
-                } else {
-                  return (
-                    <span className="label orange-red">
-                      {this.state.movie.genres[i].name}
-                    </span>
-                  );
-                }
-              })}
-              {/* </li>
+                      <span className="bold">Genres:</span>
+                      {this.state.movie.genres.map((e, i) => {
+                        if (i < this.state.movie.genres.length - 1) {
+                          return (
+                            <span
+                              className="label orange-red"
+                              id={`genre-${i}`}
+                              key={i}
+                            >
+                              {this.state.movie.genres[i].name}
+                            </span>
+                          );
+                        } else {
+                          return (
+                            <span
+                              className="label orange-red"
+                              id={`genre-${i}`}
+                              key={i}
+                            >
+                              {this.state.movie.genres[i].name}
+                            </span>
+                          );
+                        }
+                      })}
+                      {/* </li>
               </ul> */}
-              <p className="movieDescription">{this.state.movie.overview}</p>
-            </section>
-          </div>
-          <Cast cast={this.state.movie.credits.cast} />
+                      <p className="movieDescription">
+                        {this.state.movie.overview}
+                      </p>
+                    </section>
+                  </div>
+                  <Cast cast={this.state.movie.credits.cast} />
+                </div>
+              )}
+            </div>
+          }
         </div>
         <Footer />
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

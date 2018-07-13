@@ -3,6 +3,9 @@
   flex-direction: column;
   margin-top: 25px;
 }
+.movie-body {
+  min-height: 600px;
+}
 
 .movieDetails {
   order: 1;
@@ -163,6 +166,10 @@ td.text-center {
 
 td.text-right {
   text-align: right;
+}
+
+.movie-loading-spinner {
+  margin: 10% 42%;
 }
 
 @media (min-width: 768px) {
